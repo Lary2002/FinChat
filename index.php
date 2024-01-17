@@ -1,10 +1,34 @@
 <?php
+
+    include 'functions/main-function.php';
     $pages = scandir('pages/');
 
     if (isset($_GET['page']) && !empty($_GET['page']) && in_array($_GET['page'].'.php', $pages)) {
         $page = $_GET['page'];
     }else {
         $page = 'home';
+        // echo $page;
+    }
+
+
+    $functions = scandir('functions/');
+
+    if (in_array($page.'.func.php', $functions)) {
+        $function = 'functions/'.$page.'.func.php';
+        include $function;
+    }else {
+        $function = '';
+        // echo $page;
+    }
+
+
+    $scripts = scandir('scripts/');
+
+    if (in_array($page.'.func.js', $scripts)) {
+        $script = 'scripts/'.$page.'.func.js';
+        // include $script;
+    }else {
+        $script = '';
         // echo $page;
     }
 ?>
@@ -33,6 +57,10 @@
 
         ?>
     </div>
+
+
+    <script src="scripts/jquery.js"></script>
+    <script src="<?= $script?>"  ></script>
     
 </body>
 </html>

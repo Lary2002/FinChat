@@ -68,10 +68,33 @@ p {
     display: flex;
     width: 100%;
 } 
+
+.btn:hover{
+  cursor: pointer;
+}
 </style>
+
+<?php
+
+  if (isset($_POST['submit'])) {
+    $email = htmlspecialchars(trim($_POST['email']));
+	  $password = sha1(htmlspecialchars(trim($_POST['password'])));
+
+    if (user_check($email, $password) == 0) {
+      $error_message = "Wrong email or password";
+    }else{
+      // register($firstname, $lastname, $email, $password);
+      $_SESSION['finance'] = $email;
+      $message = "Login successful";
+      header('Location: index.php?page=dashboard');
+    }
+  }
+?>
 
 <br>
 <link rel="stylesheet" href="style.css">
+
+<form id="logForm" method="post">
 <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
@@ -82,15 +105,18 @@ p {
               <p class="text-muted">Sign In to your account</p>
               <div class="input-group mb-3">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" class="form-control" placeholder="Username">
+                <input required name="email" type="email" class="form-control" placeholder="email">
               </div>
               <div class="input-group mb-4">
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <input type="password" class="form-control" placeholder="Password">
+                <input required type="password" name="password" class="form-control" placeholder="Password">
+              </div>
+              <div class="error">
+                <?= isset($error_message)? $error_message : '';?>
               </div>
               <div class="row">
                 <div class="col-6">
-                  <button type="button" class="btn btn-primary px-4">Login</button>
+                  <button type="submit" name="submit" class="btn btn-primary px-4">Login</button>
                 </div>
                 <div class="col-6 text-right">
                   <button type="button" class="btn btn-link px-0">Forgot password?</button>
@@ -102,8 +128,8 @@ p {
             <div class="card-body text-center">
               <div>
                 <h2>Sign up</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <button type="button" class="btn btn-primary active mt-3">Register Now!</button>
+                <p>If you do not yet have your account, click here.</p>
+                <a href="index.php?page=register"><button type="button" class="btn btn-primary active mt-3">Register Now!</button></a>
               </div>
             </div>
           </div>
@@ -111,3 +137,4 @@ p {
       </div>
     </div>
   </div>
+</form>

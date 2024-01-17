@@ -1,0 +1,27 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    background-color: #CCC;
+    width: 100%;
+    position: relative;
+    padding: 5px 2%;
+}
+
+.error{
+    /* background-color: rgb(255, 174, 174); */
+    border: 1px solid;
+    color:  #ef5b5b
+
+}
+
+.is-focused{
+    background-color: #2595F2
+}
+
