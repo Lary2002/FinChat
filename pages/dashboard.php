@@ -66,20 +66,32 @@ h2, .h2 {
 .text-semibold {
   font-weight: 600;
 }
+
+.card-link{
+  text-decoration: none;
+}
 </style>
 
+
+<?php
+  if (is_logged() == 0) {
+    header('Location: index.php?page=login'); 
+  }
+?>
 <div class="container bootstrap snippets bootdey">
     <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="panel panel-dark panel-colorful">
-                <div class="panel-body text-center">
-                	<p class="text-uppercase mar-btm text-sm">Friends</p>
-                	<i class="fa fa-users fa-5x"></i>
-                	<hr>
-                	<p class="h2 text-thin">15</p>
-                	<small><span class="text-semibold">7%</span> Higher than yesterday</small>
-                </div>
-            </div>
+            <a href="index.php?page=friends" class="card-link">
+              <div class="panel panel-dark panel-colorful">
+                  <div class="panel-body text-center">
+                    <p class="text-uppercase mar-btm text-sm">Friends</p>
+                    <i class="fa fa-users fa-5x"></i>
+                    <hr>
+                    <p class="h2 text-thin">15</p>
+                    <small><span class="text-semibold">7%</span> Higher than yesterday</small>
+                  </div>
+              </div>
+            </a>
         </div>
         <div class="col-md-3 col-sm-6 col-xs-12">
         	<div class="panel panel-danger panel-colorful">

@@ -15,3 +15,14 @@ try {
     echo "Error : " . $e->getMessage();
 }
 
+function is_logged(){
+  if (isset($_SESSION['finance'])) {
+    $logged = 1;
+  }else{
+    $logged = 0;
+  }
+
+  return $logged;
+
+}
+

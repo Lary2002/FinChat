@@ -73,6 +73,13 @@ p {
   cursor: pointer;
 }
 </style>
+  
+  
+<?php
+  if (is_logged() == 1) {
+    header('Location: index.php?page=dashboard'); 
+  }
+?>
 
 <?php
 
